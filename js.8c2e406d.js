@@ -11,4 +11,4 @@ var e,t=arguments[3];!function(t,r){"object"==typeof exports&&"object"==typeof m
 },{}],"QvaY":[function(require,module,exports) {
 "use strict";require("../sass/main.scss");var e=r(require("../templates/cardMovie.hbs")),t=r(require("./apiFetch"));function r(e){return e&&e.__esModule?e:{default:e}}const a={cardList:document.querySelector(".cards-movie-list")},n=new t.default;function i(e){e.forEach(e=>e.vote_average=s(e.vote_average))}function s(e){return 1===e.toString().length?".0".padStart(3,e):e}function c(e){e.forEach(e=>(e.release_date=u(e.release_date))||(e.first_air_date=u(e.first_air_date)))}function u(e){if(null!=e)return e.slice(0,4)}n.fetchMovie().then(t=>{i(t),c(t),a.cardList.insertAdjacentHTML("beforeend",(0,e.default)(t))}),n.fetchGenres().then(e=>e);
 },{"../sass/main.scss":"clu1","../templates/cardMovie.hbs":"c3Pu","./apiFetch":"cSna"}]},{},["QvaY"], null)
-//# sourceMappingURL=/team-project-js/js.93725f80.js.map
+//# sourceMappingURL=/team-project-js/js.8c2e406d.js.map
