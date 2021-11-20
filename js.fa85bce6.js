@@ -15,4 +15,4 @@ var e,t=arguments[3];!function(t,r){"object"==typeof exports&&"object"==typeof m
 },{}],"QvaY":[function(require,module,exports) {
 "use strict";require("../sass/main.scss");var e=s(require("./markupCardMovie")),r=s(require("./inputMoviesSerch"));function s(e){return e&&e.__esModule?e:{default:e}}
 },{"../sass/main.scss":"clu1","./markupCardMovie":"j8xY","./inputMoviesSerch":"VLu0"}]},{},["QvaY"], null)
-//# sourceMappingURL=/team-project-js/js.d6912ec1.js.map
+//# sourceMappingURL=/team-project-js/js.fa85bce6.js.map
