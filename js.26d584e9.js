@@ -19,4 +19,4 @@ const e={homeLink:document.querySelectorAll(".home-link"),libraryLink:document.q
 },{}],"QvaY":[function(require,module,exports) {
 "use strict";require("../sass/main.scss");var e=u(require("./markupCardMovie")),r=u(require("./inputMoviesSerch")),i=u(require("./pageSwitch"));function u(e){return e&&e.__esModule?e:{default:e}}
 },{"../sass/main.scss":"clu1","./markupCardMovie":"j8xY","./inputMoviesSerch":"VLu0","./pageSwitch":"mnqV"}]},{},["QvaY"], null)
-//# sourceMappingURL=/team-project-js/js.159b2ff8.js.map
+//# sourceMappingURL=/team-project-js/js.26d584e9.js.map
