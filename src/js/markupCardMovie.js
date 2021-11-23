@@ -1,6 +1,7 @@
 import createCardMovies from '../templates/cardMovie.hbs';
 import Api from './apiFetch';
 import modalMovie from './modalMovie';
+import renderPaginationMovie from './pagination';
 
 const refs = {
   cardList: document.querySelector('.cards-movie-list'),
@@ -52,11 +53,12 @@ function onComparingArrayAndObject(arr, obj) {
 api
   .fetchMovie()
   .then(data => {
-    onRatingFixedNumber(data);
-    onFilmReleaseYear(data);
-    onRemoveGenres(data);
+    onRatingFixedNumber(data.results);
+    onFilmReleaseYear(data.results);
+    onRemoveGenres(data.results);
     modalMovie();
-    refs.cardList.insertAdjacentHTML('beforeend', createCardMovies(data));
+    refs.cardList.insertAdjacentHTML('beforeend', createCardMovies(data.results));
+    renderPaginationMovie(data.total_results);
   })
   .catch(onError);
 
