@@ -31,7 +31,6 @@ export default class Api {
     const data = await response.json();
     return data;
   }
-
     resetPageNumber() {
     this.pageNumber = 1;
   }
@@ -39,9 +38,7 @@ export default class Api {
     return this.searchQuery;
   }
   set query(newSearchQuery) {
-    // console.log(newSearchQuery)
     this.searchQuery = newSearchQuery;
-    // console.log(this.searchQuery)
   }
 }
 

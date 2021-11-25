@@ -1,4 +1,5 @@
 import createCardMovies from '../templates/cardMovie.hbs';
+// import createPreloader from '../partials/preloader.html';
 import refs from './refs';
 import Api from './apiFetch';
 import modalMovie from './modalMovie';
@@ -6,7 +7,7 @@ import modalMovie from './modalMovie';
 const api = new Api();
 
 refs.searchForm.addEventListener('submit', onSearchMovies);
-refs.loadMoreBtn.addEventListener('click', onLoadMore);
+// refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
 //==============Карточка фильма============================
 // запрос данных для жанров (возвращает массив объектов с свойствами жанров)
@@ -45,9 +46,23 @@ function onComparingArrayAndObject(arr, obj) {
 }
 
 // Разметка карточек фильмов по запросу на бэк
+function normalRatingYearGenres(data) {
+  onRatingFixedNumber(data.results);
+  onFilmReleaseYear(data.results);
+  onRemoveGenres(data.results);
+}
+
+function onCreateMarkup(data) {
+  refs.cardsMovieList.insertAdjacentHTML('afterbegin', createCardMovies(data.results));
+}
+
 api.fetchMovie()
   .then(data => {
-    onCreateMarkup(data);
+    setTimeout(() => { 
+      normalRatingYearGenres(data)
+      onCreateMarkup(data);
+      onPreloader();
+    }, 700);
   })
   .catch(onError);
 
@@ -78,24 +93,12 @@ function onSliceNumber(release) {
 }
 
 function onError() {
-  return console.log('Search result not successful. Enter the correct movie name and');
-}
+  refs.textError.classList.remove('is-hidden')
+    setTimeout(() => {
+      refs.textError.classList.add('is-hidden')
+  }, 2000);
 
-// function onCardImage() {
-//   if (poster_path === null) {
-//     poster_path = unnamed_min.png
-//   }
-// }
-
-function normalRatingYearGenres(data) {
-  onRatingFixedNumber(data.results);
-  onFilmReleaseYear(data.results);
-  onRemoveGenres(data.results);
-}
-
-function onCreateMarkup(data) {
-  normalRatingYearGenres(data)
-  refs.cardsMovieList.insertAdjacentHTML('afterbegin', createCardMovies(data.results));
+  console.log('Search result not successful. Enter the correct movie name and');
 }
 
 //==============Поиск фильма============================
@@ -105,10 +108,12 @@ function onSearchMovies(e) {
   api.query = e.currentTarget.elements.query.value;
   resetMarkup();
   api.fetchSearch(e)
-    .then((data) => {
-      onCreateMarkup(data);
-    })
-    .catch(onError);
+  .then((data) => {
+    normalRatingYearGenres(data)
+    onCreateMarkup(data);
+    onPreloader();
+  })
+  .catch(onError);
 }
 
 function resetMarkup() {
@@ -116,45 +121,26 @@ function resetMarkup() {
   api.resetPageNumber();
 }
 
-// ===================================================
-// Подгрузка страниц
-function onLoadMore() {
-  api.fetchSearch()
-    .then(data => {
-        return refs.cardsMovieList.insertAdjacentHTML('beforeend', createCardMovies(data.results))
-    })
-    .catch(onError)
-//  onScroll();
+// ================Спинер=============================
+
+function onPreloader() {
+  refs.preloaderOverflow.classList.add('is-hidden')
 }
 
-// function onScroll() {
-//   refs.loadMoreBtn.scrollIntoView({
-//     behavior: 'smooth',
-//     block: 'end',
-//   });
-// }
+// onPreloader(onSearchMovies())
 
-// document.addEventListener('scroll', () => {
-//     const documentRect = document.documentElement.getBoundingClientRect();
-//     if (documentRect.bottom < document.documentElement.clientHeight + 300) {
-//         onLoadMore();
-//     }
-// })
+// function onMarkupPreloader() {
+  
+// }
 
 // ===================================================
-
-// refs.searchForm.addEventListener('submit', onSearchMovies);
-
-// function onSearchMovies(evt) {
-//   evt.preventDefault();
-//   resetCardMarkup();
-//   console.log(api.query)
-//   api.query = evt.target.elements.query.value;
-//   console.log(api.query)
-//   )
-// }
-
-// function resetCardMarkup() {
-//   refs.cardsMovieList.innerHTML = '';
-//   api.resetPageNumber();
+// ===================================================
+// Подгрузка страниц
+// function onLoadMore() {
+//   api.fetchSearch()
+//     .then(data => {
+//       normalRatingYearGenres()
+//       return refs.cardsMovieList.insertAdjacentHTML('beforeend', createCardMovies(data.results))
+//     })
+//     .catch(onError)
 // }

@@ -1,0 +1,17 @@
+// .preloader-overflow {
+// position: fixed;
+// background: $background-color-light;
+// display: grid;
+// font: 1em/1.5 sans-serif;
+// place-items: center;
+// height: 100vh;
+// opacity: 0.8;
+// }
+
+.preloader {
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%);
+  opacity: 0.8;
+}
