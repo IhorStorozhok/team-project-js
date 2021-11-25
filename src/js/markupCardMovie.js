@@ -3,6 +3,9 @@ import createCardMovies from '../templates/cardMovie.hbs';
 import refs from './refs';
 import Api from './apiFetch';
 import modalMovie from './modalMovie';
+import {createPagination} from './pagination';
+
+export {onCreateMarkup, onRatingFixedNumber, onError};
 
 const api = new Api();
 
@@ -94,11 +97,23 @@ function onSliceNumber(release) {
 
 function onError() {
   refs.textError.classList.remove('is-hidden')
-    setTimeout(() => {
-      refs.textError.classList.add('is-hidden')
+  setTimeout(() => {
+    refs.textError.classList.add('is-hidden')
   }, 2000);
+  // console.log('Search result not successful. Enter the correct movie name and');
+}
 
-  console.log('Search result not successful. Enter the correct movie name and');
+function normalRatingYearGenres(data) {
+  onRatingFixedNumber(data.results);
+  onFilmReleaseYear(data.results);
+  onRemoveGenres(data.results);
+}
+
+function onCreateMarkup(data) {
+  normalRatingYearGenres(data);
+  refs.cardsMovieList.insertAdjacentHTML('afterbegin', createCardMovies(data.results));
+  createPagination(data);
+  return data.results;
 }
 
 //==============Поиск фильма============================
@@ -127,20 +142,8 @@ function onPreloader() {
   refs.preloaderOverflow.classList.add('is-hidden')
 }
 
-// onPreloader(onSearchMovies())
-
-// function onMarkupPreloader() {
-  
+// function resetCardMarkup() {
+//   refs.cardsMovieList.innerHTML = '';
+//   api.resetPageNumber();
 // }
-
 // ===================================================
-// ===================================================
-// Подгрузка страниц
-// function onLoadMore() {
-//   api.fetchSearch()
-//     .then(data => {
-//       normalRatingYearGenres()
-//       return refs.cardsMovieList.insertAdjacentHTML('beforeend', createCardMovies(data.results))
-//     })
-//     .catch(onError)
-// }
