@@ -32,4 +32,4 @@ var t;!function(e,n){"object"==typeof exports&&"object"==typeof module?module.ex
 },{"../templates/card_movie_modal.hbs":"b4WE","./markupCardMovie":"j8xY","../js/movieDescriptionFullsize":"tDLf"}],"QvaY":[function(require,module,exports) {
 "use strict";require("../sass/main.scss");var e=t(require("./markupCardMovie")),r=t(require("./inputMoviesSerch")),i=t(require("./pageSwitch")),u=t(require("./modal-team")),s=require("./movieDescriptionFullsize"),a=t(require("./pagination"));function t(e){return e&&e.__esModule?e:{default:e}}
 },{"../sass/main.scss":"clu1","./markupCardMovie":"j8xY","./inputMoviesSerch":"UYQs","./pageSwitch":"mnqV","./modal-team":"O9Th","./movieDescriptionFullsize":"tDLf","./pagination":"o8lo"}]},{},["QvaY"], null)
-//# sourceMappingURL=/team-project-js/js.22bd511f.js.map
+//# sourceMappingURL=/team-project-js/js.79060ec4.js.map
