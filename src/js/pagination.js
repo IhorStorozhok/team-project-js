@@ -6,12 +6,11 @@ import {Api} from './apiFetch';
 
 const filmListRef = document.querySelector('.js-cards-movie-list');
 const container = document.getElementById('tui-pagination-container');
-console.log(container);
 
 const options = {
     totalItems: 10,
     itemsPerPage: 20,
-    visiblePages: 7,
+    visiblePages: 5,
     page: 1,
     centerAlign: true,
     firstItemClassName: 'tui-first-child',
@@ -47,6 +46,7 @@ function  createPaginationTrending (result) {
                 filmListRef.innerHTML = '';
                 options.page = 1;
                 onCreateMarkup(data);
+                window.scroll(top);
               })
             .catch(onError);
    });
@@ -62,13 +62,20 @@ function  createPaginationSearch (result, inputValue) {
         options.page = currentPage;
         api2.page = currentPage;
         api2.searchQuery = inputValue;
-        console.log(api2);
-
         api2.fetchSearch()
         .then(data => {
             filmListRef.innerHTML = '';
             onCreateMarkup(data);
+            window.scroll(top);
           })
           .catch(onError);
     });
 }
+
+const onScrollToTop = function () {
+  window.scroll(top);
+};
+
+const buttonTop = document.querySelector('.scrollToTop');
+buttonTop.addEventListener('click', onScrollToTop);
+

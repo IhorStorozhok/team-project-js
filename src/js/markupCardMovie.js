@@ -53,7 +53,6 @@ api
   .then(data => {
     onCreateMarkup(data);
     createPaginationTrending(data);
-    console.log(data.results);
   })
   .catch(onError);
 
@@ -100,8 +99,28 @@ function normalRatingYearGenres(data) {
 }
 
 function onCreateMarkup(data) {
-  normalRatingYearGenres(data);
-  refs.cardsMovieList.insertAdjacentHTML('afterbegin', createCardMovies(data.results));
+  data.results.forEach(movie => {
+    if(!movie.genre_ids) {
+      movie.genre_ids = [1];   
+    } else {
+      return;
+    };
+  
+    if(!movie.vote_average) {
+       movie.vote_average = 0;   
+    } else {
+      return;
+    };
+  });
+
+  try {
+    normalRatingYearGenres(data);
+    refs.cardsMovieList.insertAdjacentHTML('afterbegin', createCardMovies(data.results));
+  } catch(error) {
+    console.log('error');
+    // console.log(error.stack);
+    // console.dir(error.message);
+  }
   return data.results;
 }
 
