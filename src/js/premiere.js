@@ -19,14 +19,19 @@ class CountdownTimer {
   #getTimerMarkup() {
     return `
       <div class="timer-box">
-      <span>ПРЕМЬЕРА:</span>
-      <br>
-      <span class="amount" data-value="days">00</span><span class="text">д</span>
-      <span class="amount" data-value="hours">00</span> <span class="text">ч</span>
+     
+     
+      <span> Самый ожидаемый фильм года - <span>
+      
+       <a href="https://www.youtube.com/watch?v=zEfAgcHbuLU">Matrix 4 </a>
+       <span> - Премьера через <span>
+      <span class="amount" data-value="days">00д</span><span class="text">д</span>
+      <span class="amount" data-value="hours">00</span><span class="text">ч</span>
       <span class="amount" data-value="mins">00</span><span class="text">мин</span>
-      <span class="amount" data-value="secs">00</span> <span class="text">сек</span>
-      </br>
+      <span class="amount" data-value="secs">00</span><span class="text">сек</span>
+    
       </div>
+      
   `;
   }
 
