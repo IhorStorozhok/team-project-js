@@ -51,9 +51,12 @@ function onComparingArrayAndObject(arr, obj) {
 api
   .fetchMovie()
   .then(data => {
-    onCreateMarkup(data);
-    createPaginationTrending(data);
-    console.log(data.results);
+    refs.preloader.classList.remove('is-hidden')
+    setTimeout(() => {
+      onCreateMarkup(data);
+      createPaginationTrending(data);
+      refs.preloader.classList.add('is-hidden')
+    }, 500)
   })
   .catch(onError);
 
@@ -83,16 +86,6 @@ function onSliceNumber(release) {
   return release.slice(0, 4);
 }
 
-function onError() {
-  return console.log('Search result not successful. Enter the correct movie name and');
-}
-
-// function onCardImage() {
-//   if (poster_path === null) {
-//     poster_path = unnamed_min.png
-//   }
-// }
-
 function normalRatingYearGenres(data) {
   onRatingFixedNumber(data.results);
   onFilmReleaseYear(data.results);
@@ -100,6 +93,20 @@ function normalRatingYearGenres(data) {
 }
 
 function onCreateMarkup(data) {
+  data.results.forEach(movie => {
+    if(!movie.genre_ids) {
+      movie.genre_ids = [1];
+    } else {
+      return;
+    };
+    
+    if(!movie.vote_average) {
+      movie.vote_average = 0;
+    } else {
+      return;
+    };
+  })
+  
   normalRatingYearGenres(data);
   refs.cardsMovieList.insertAdjacentHTML('afterbegin', createCardMovies(data.results));
   return data.results;
@@ -114,16 +121,38 @@ function onSearchMovies(e) {
   api
     .fetchSearch(e)
     .then(data => {
-      onCreateMarkup(data);
-      container.innerHTML = '';
-      createPaginationSearch(data, api.query);
+        onCreateMarkup(data);
+        container.innerHTML = '';
+        createPaginationSearch(data, api.query);
+        incorrectInput(data.results);
+        refs.searchForm.reset();
     })
     .catch(onError);
+  }
+      //   refs.preloader.classList.remove('is-hidden')
+      // setTimeout(() => {
+      //   refs.preloader.classList.add('is-hidden')
+      // }, 500);
+
+  function resetMarkup() {
+    refs.cardsMovieList.innerHTML = '';
+    api.resetPageNumber();
+    refs.searchForm.reset();
+  }
+  
+//===Проверка корректности поискового запроса=========
+
+function onError() {
+  refs.textInputError.classList.remove('is-hidden')
+  console.log('Search result not successful. Enter the correct movie name and');
 }
 
-function resetMarkup() {
-  refs.cardsMovieList.innerHTML = '';
-  api.resetPageNumber();
+function incorrectInput(e) {
+  if (e.length === 0) {
+    refs.textInputError.classList.remove('is-hidden')
+  } else {
+    refs.textInputError.classList.add('is-hidden')
+  }
 }
 
 // ===================================================
@@ -135,39 +164,4 @@ function onLoadMore() {
       return refs.cardsMovieList.insertAdjacentHTML('beforeend', createCardMovies(data.results));
     })
     .catch(onError);
-  //  onScroll();
 }
-
-// function onScroll() {
-//   refs.loadMoreBtn.scrollIntoView({
-//     behavior: 'smooth',
-//     block: 'end',
-//   });
-// }
-
-// document.addEventListener('scroll', () => {
-//     const documentRect = document.documentElement.getBoundingClientRect();
-//     if (documentRect.bottom < document.documentElement.clientHeight + 300) {
-//         onLoadMore();
-//     }
-// })
-
-// ===================================================
-
-// refs.searchForm.addEventListener('submit', onSearchMovies);
-
-// function onSearchMovies(evt) {
-//   evt.preventDefault();
-//   resetCardMarkup();
-//   console.log(api.query)
-//   api.query = evt.target.elements.query.value;
-//   console.log(api.query)
-//   )
-// }
-
-// function resetCardMarkup() {
-//   refs.cardsMovieList.innerHTML = '';
-//   api.resetPageNumber();
-// }
-// ===================================================
-
