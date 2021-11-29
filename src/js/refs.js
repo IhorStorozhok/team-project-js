@@ -6,7 +6,6 @@ export default {
   loadMoreBtn: document.querySelector('[data-action="load-more"]'),
   // =============================================================
 
-  
   homeLink: document.querySelector('.home-link'),
   libraryLink: document.querySelector('.library-link'),
   libraryHeader: document.querySelector('.js-library__header'),
@@ -16,5 +15,14 @@ export default {
   filmoteka: document.querySelector('.logo__text'),
   libraryFilmoteka: document.querySelector('.js-library__text'),
   icon: document.querySelector('.icon-style'),
-  libraryIcon:document.querySelector('.filmoteka')
+  libraryIcon: document.querySelector('.filmoteka'),
+
+  //=================================
+  autenticatorButton: document.querySelector('.authenticator-thumb'),
+  autenticatorModal: document.querySelector('.lightbox__aut'),
+  autenticatorModalClose: document.querySelector('.autenticator-close'),
+  autenticatorForm: document.getElementById('signin'),
+
+  autenticatorUser: document.getElementById('user'),
+  autenticatorPassword: document.getElementById('pass'),
 };

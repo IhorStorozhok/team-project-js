@@ -52,8 +52,24 @@ p {
   font-weight: 500;
   line-height: 1.1716;
 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   padding-top: 46px;
   padding-bottom: 46px;
+}
+
+.navigation-with-authenticator-thumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.authenticator-thumb {
+  width: 25px;
+  height: 25px;
+  background-color: #ffffff;
 }
 
 .icon {
@@ -164,11 +180,7 @@ p {
   height: 3px;
   line-height: 1.1716;
 }
-.navigation {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+
 .nav__connection {
   position: relative;
   line-height: 1.1716;
