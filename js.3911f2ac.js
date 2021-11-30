@@ -32,4 +32,4 @@ function t(t,n,s){return e(t,a(t,n,"set"),s),s}function e(t,e,n){if(e.set)e.set.
 },{"./apiFetch":"cSna","./markupCardMovie":"j8xY","./pageSwitch":"mnqV","./modalMovie":"MbNB","./refs":"VyiV"}],"QvaY":[function(require,module,exports) {
 "use strict";require("../sass/main.scss");var e=o(require("./markupCardMovie")),r=o(require("./inputMoviesSerch")),i=o(require("./pageSwitch")),u=require("./modalMovie"),s=o(require("./modal-team")),a=o(require("./premiere")),t=o(require("./buttonServices"));function o(e){return e&&e.__esModule?e:{default:e}}
 },{"../sass/main.scss":"clu1","./markupCardMovie":"j8xY","./inputMoviesSerch":"UYQs","./pageSwitch":"mnqV","./modalMovie":"MbNB","./modal-team":"O9Th","./premiere":"N390","./buttonServices":"d367"}]},{},["QvaY"], null)
-//# sourceMappingURL=/team-project-js/js.2251731e.js.map
+//# sourceMappingURL=/team-project-js/js.3911f2ac.js.map
