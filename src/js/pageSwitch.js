@@ -2,7 +2,7 @@ import Api from './apiFetch';
 import onError from './markupCardMovie';
 import createCardMovies from '../templates/cardMovie.hbs';
 import refs from './refs';
-import { container } from './pagination';
+import {createPaginationTrending, container} from './pagination';
 
 const apiHome = new Api();
 
@@ -39,6 +39,7 @@ export function fetchHomePage() {
     .fetchMovie()
     .then(data => {
       onCreateMarkup(data);
+      createPaginationTrending(data);
     })
     .catch(onError);
 
