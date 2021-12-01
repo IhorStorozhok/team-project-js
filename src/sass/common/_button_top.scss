@@ -1,14 +1,14 @@
-.scrollToTop {
+#scrollToTop {
     background-image: url('../img/svg/array-up.svg');
-    background-color: $accent-color;
-    fill: white !important;
+    // background-color: transparent;
+    // fill: red !important;
     border-radius: 50%;
     // border-color: $accent-color;
     border-image: none !important;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
 }
 
 .scrollToTop:hover {
@@ -18,18 +18,18 @@
 .buttonTop {
     display: none;
     position: fixed;
-    bottom: 45px;
-    right: 10px;
-    background-color: $accent-color;
+    bottom: 70px;
+    right: 8px;
+    background-color: white;
     border: 0px solid transparent;
     border-radius: 50%;
     width: 40px;
     height: 40px;
 }
 
-.buttonTop:hover {
-    border: 2px solid $accent-color;
-}
+// .buttonTop:hover {
+//     border: 2px solid $accent-color;
+// }
 
 .buttonTop:hover,
 .buttonTop:hover .scrollToTop {

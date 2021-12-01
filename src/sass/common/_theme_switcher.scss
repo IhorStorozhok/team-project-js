@@ -8,12 +8,13 @@
 
 .theme-button {
     position: fixed;
-    top: 10px;
-    right: 10px;
+    bottom: 25px;
+    right: 8px;
     width: 40px;
     height: 40px;
     border-width: 0px;
-    background-color: transparent;
+    background-color: white;
+    border-radius: 50%;
     cursor: pointer;
 }
 
@@ -26,6 +27,23 @@
 }
 
 .theme-dark {
-    background-color: $dark-grey;
+    background-color: black;
+    background-image: url(../img/2.jpg);
+    background-repeat: no-repeat;
+    background-position: -100px, 50%;
+    background-attachment: fixed;
+    background-size: contain;
     color: white;
 }
+
+// body {
+//     background-repeat: no-repeat;
+//     background-position: -450px, 0;
+//     background-attachment: fixed;
+//     background-size: contain;
+
+//     // @media screen and (min-width: 1024px) {
+//     //    background-image: url(../img/1.jpg);
+//     // }
+// }
+
