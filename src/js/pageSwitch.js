@@ -2,6 +2,7 @@ import Api from './apiFetch';
 import onError from './markupCardMovie';
 import createCardMovies from '../templates/cardMovie.hbs';
 import refs from './refs';
+import {container} from './pagination';
 
 const apiHome = new Api();
 
@@ -19,6 +20,7 @@ function onLibraryDraw() {
   refs.libraryHeader.classList.remove('header-hidden');
   refs.homeHeader.classList.add('header-hidden');
   refs.cardsMovieList.innerHTML = '';
+  container.innerHTML = '';
 }
 
 // Возврат на домашнюю страницу
