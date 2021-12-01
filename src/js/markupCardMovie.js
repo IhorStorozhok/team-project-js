@@ -51,16 +51,13 @@ function onComparingArrayAndObject(arr, obj) {
 api
   .fetchMovie()
   .then(data => {
+    refs.preloader.classList.remove('is-hidden');
+    setTimeout(() => {
     onCreateMarkup(data);
     createPaginationTrending(data);
     // console.log(data.results);
-
-    // refs.preloader.classList.remove('is-hidden');
-    // setTimeout(() => {
-    //   onCreateMarkup(data);
-    //   createPaginationTrending(data);
-    //   refs.preloader.classList.add('is-hidden');
-    // }, 500);
+      refs.preloader.classList.add('is-hidden');
+    }, 300);
   })
   .catch(onError);//onError
   
@@ -125,13 +122,18 @@ function onSearchMovies(e) {
   api
     .fetchSearch(e)
     .then(data => {
+  refs.preloader.classList.remove('is-hidden');
+    setTimeout(() => {
       onCreateMarkup(data);
       container.innerHTML = '';
       createPaginationSearch(data, api.query);
       incorrectInput(data.results);
       // console.log(data.results);
       refs.searchForm.reset();
-    })
+      refs.preloader.classList.add('is-hidden');
+    }, 300)
+  })
+
     .catch(onError);
 }
 //   refs.preloader.classList.remove('is-hidden')
