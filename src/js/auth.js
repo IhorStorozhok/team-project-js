@@ -75,7 +75,7 @@ ${el}
 //lisend auth changed
 onAuthStateChanged(auth, user => {
   if (user) {
-     refs.libraryLink.classList.remove('visually-hidden');
+    refs.libraryLink.classList.remove('visually-hidden');
   } else {
     refs.libraryLink.classList.add('visually-hidden');
   }
@@ -89,7 +89,7 @@ const submitButton = signForm.querySelector('.pseudo-button');
 submitButton.addEventListener('click', () => {
   signForm.requestSubmit();
 });
-console.log(submitButton);
+
 signForm.addEventListener('submit', e => {
   e.preventDefault();
 
@@ -99,9 +99,13 @@ signForm.addEventListener('submit', e => {
 
   //sing up the user
 
-  createUserWithEmailAndPassword(auth, email, password).then(cred => {
-    signForm.reset();
-  });
+  createUserWithEmailAndPassword(auth, email, password)
+    .then(cred => {
+      signForm.reset();
+      onCloseModalClick();
+      alert('You have successfully registered ');
+    })
+    .catch(alert('incorrect password or email'));
 });
 
 //logout
@@ -125,9 +129,8 @@ loginForm.addEventListener('submit', e => {
   const email = loginForm['login-email'].value;
   const password = loginForm['login-pass'].value;
 
-  signInWithEmailAndPassword(auth, email, password).then(cred => {
-    console.log(cred.user);
-  });
+  signInWithEmailAndPassword(auth, email, password).then(cred => {});
+
   loginForm.reset();
   onCloseModalClick();
 });
