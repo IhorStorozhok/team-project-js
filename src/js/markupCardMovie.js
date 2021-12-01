@@ -122,18 +122,18 @@ function onSearchMovies(e) {
   e.preventDefault();
   api.query = e.currentTarget.elements.query.value;
   resetMarkup();
+  container.innerHTML = '';
+
   api
     .fetchSearch(e)
     .then(data => {
       onCreateMarkup(data);
-      container.innerHTML = '';
 
       if(data.total_results > 20) {
         createPaginationSearch(data, api.query);
       };
 
       incorrectInput(data.results);
-      // console.log(data.results);
       refs.searchForm.reset();
     })
     .catch(onError);

@@ -36,6 +36,7 @@ const options = {
 
 function  createPaginationTrending (result) {
     options.totalItems = result.total_results;
+    options.page = 1;
     const pagination = new Pagination(container, options);
     pagination.on('afterMove', (event) => {
         const currentPage = event.page;
