@@ -127,7 +127,11 @@ function onSearchMovies(e) {
     .then(data => {
       onCreateMarkup(data);
       container.innerHTML = '';
-      createPaginationSearch(data, api.query);
+
+      if(data.total_results > 20) {
+        createPaginationSearch(data, api.query);
+      };
+
       incorrectInput(data.results);
       // console.log(data.results);
       refs.searchForm.reset();

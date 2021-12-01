@@ -69,7 +69,10 @@ function  createPaginationSearch (result, inputValue) {
             filmListRef.innerHTML = '';
             onCreateMarkup(data);
             window.scroll(top);
-            themeCheck();        
+            themeCheck(); 
+            // if(data.length < 20) {
+            //   console.log(5555);
+            // };       
           })
           .catch(onError);
     });
@@ -77,7 +80,11 @@ function  createPaginationSearch (result, inputValue) {
 }
 
 const onScrollToTop = function () {
-  window.scroll(top);
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  })
 };
 
 const buttonTop = document.querySelector('.buttonTop');
