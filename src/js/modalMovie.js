@@ -119,7 +119,7 @@ console.log(libraryData)
       enableScrolling();
     }
   });
-}
+
 modalMovie();
 function addToQueue() {
   console.log('queueueueue');
