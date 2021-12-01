@@ -107,9 +107,14 @@ function onCreateMarkup(data) {
       return;
     }
   });
+  refs.preloader.classList.remove('is-hidden');
+    setTimeout(() => {
 
   normalRatingYearGenres(data);
-  refs.cardsMovieList.insertAdjacentHTML('afterbegin', createCardMovies(data.results));
+      refs.cardsMovieList.insertAdjacentHTML('afterbegin', createCardMovies(data.results));
+            refs.preloader.classList.add('is-hidden');
+    }, 300)
+
   return data.results;
 }
 
@@ -122,16 +127,12 @@ function onSearchMovies(e) {
   api
     .fetchSearch(e)
     .then(data => {
-  refs.preloader.classList.remove('is-hidden');
-    setTimeout(() => {
       onCreateMarkup(data);
       container.innerHTML = '';
       createPaginationSearch(data, api.query);
       incorrectInput(data.results);
       // console.log(data.results);
       refs.searchForm.reset();
-      refs.preloader.classList.add('is-hidden');
-    }, 300)
   })
 
     .catch(onError);
