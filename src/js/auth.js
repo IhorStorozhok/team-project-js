@@ -113,7 +113,6 @@ const logout = document.querySelector('#logout');
 logout.addEventListener('click', e => {
   e.preventDefault();
   signOut(auth);
-  a;
   onCloseModalClick();
 });
 
@@ -130,9 +129,8 @@ loginForm.addEventListener('submit', e => {
   const email = loginForm['login-email'].value;
   const password = loginForm['login-pass'].value;
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then(cred => {})
-    .catch(alert('incorrect password or email'));
+  signInWithEmailAndPassword(auth, email, password).then(cred => {});
+
   loginForm.reset();
   onCloseModalClick();
 });

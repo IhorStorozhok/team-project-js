@@ -2,7 +2,7 @@ import Api from './apiFetch';
 import onError from './markupCardMovie';
 import createCardMovies from '../templates/cardMovie.hbs';
 import refs from './refs';
-import {container} from './pagination';
+import { container } from './pagination';
 
 const apiHome = new Api();
 
@@ -13,7 +13,6 @@ refs.filmoteka.addEventListener('click', onHomeDraw);
 refs.libraryFilmoteka.addEventListener('click', onHomeDraw);
 refs.icon.addEventListener('click', onHomeDraw);
 refs.libraryIcon.addEventListener('click', onHomeDraw);
-
 
 // Отрисовка библиотеки, пока она пустая
 function onLibraryDraw() {
